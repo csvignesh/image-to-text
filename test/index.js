@@ -1,47 +1,74 @@
 'use strict'
 
+var Q = require('q');
 var fs = require('fs');
-var filesize;
-fs.stat('./iphone.jpeg', function (err, data) {
-    if(!err){
-        fs.readFile('./iphone.jpeg', function(err, content){
-            //console.log(content);
-            filesize = data.size;
-            require('../index').getTextFromImage({
-                name: 'iphone.jpeg',
-                path: './',
-                content: content
-            }).then(function(data){
-                console.log('With name and content : ' + data);
-            }).fail(function(){
-                console.log('With name and content : failed');
+var lib = require('../index');
+
+withContent().then(function(){
+    return WithoutContent();
+}).then(function(){
+    return withPathAndContent();
+}).then(function(){
+    return WithNameAloneAsString();
+}).fail(console.log.bind(console));
+
+function withContent(){
+    var deferred = Q.defer();
+    fs.stat('./iphone.jpeg', function (err, data) {
+        if(!err){
+            fs.readFile('./iphone.jpeg', function(err, content){
+                if(err) {
+                    deferred.reject('file read error');
+                    return;
+                }
+
+                var filesize = data.size;
+                lib.getTextFromImage({
+                    name: 'iphone.jpeg',
+                    path: './',
+                    content: content
+                }).then(function(data){
+                    console.log('Passed With name and content : ' + data);
+                    deferred.resolve();
+                }).fail(function(){
+                    deferred.reject('With name and content : failed');
+                });
             });
-        });
-    }
-});
+        } else {
+            deferred.reject('file stat error');
+        }
+    });
+    return deferred.promise;
+}
 
 //without content
-require('../index').getTextFromImage({
-    name: 'iphone.jpeg',
-    path: './'
-}).then(function(data){
-    console.log('Without content : ' + data);
-}).fail(function(){
-    console.log('Without content : failed');
-});
+function WithoutContent(){
+    return lib.getTextFromImage({
+        name: 'iphone.jpeg',
+        path: './'
+    }).then(function(data){
+        console.log('Passed Without content : ' + data);
+    }).fail(function(){
+        return 'Without content : failed';
+    });
+}
 
 //without path and content
-require('../index').getTextFromImage({
-    name: 'iphone.jpeg'
-}).then(function(data){
-    console.log('Without path and content : ' + data);
-}).fail(function(){
-    console.log('Without path and content : failed');
-});
+function withPathAndContent() {
+    return lib.getTextFromImage({
+        name: 'iphone.jpeg'
+    }).then(function(data) {
+        console.log('Passed Without path and content : ' + data);
+    }).fail(function() {
+        return 'Without path and content : failed';
+    });
+}
 
 //with name alone as string
-require('../index').getTextFromImage('iphone.jpeg').then(function(data){
-    console.log('with name alone as string : ' + data);
-}).fail(function(){
-    console.log('with name alone as string : failed');
-});
+function WithNameAloneAsString(){
+    return lib.getTextFromImage('iphone.jpeg').then(function(data){
+        console.log('Passed with name alone as string : ' + data);
+    }).fail(function(){
+        return 'with name alone as string : failed';
+    });
+}
