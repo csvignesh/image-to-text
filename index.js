@@ -29,14 +29,14 @@ var helper = {
         var fileContentPromise = Q.defer();
 
         if(!file){
-            fileContentPromise.reject();
+            fileContentPromise.reject('No file metadata provided');
         } else if(Object.prototype.toString.call(file) !== '[object Object]'){
             //if only file name - then search in root
             var fileName = file;
             var root = './';
             fs.readFile(root + file, function(err, content){
                 if(err){
-                    fileContentPromise.reject();
+                    fileContentPromise.reject(err);
                 } else {
                     fileContentPromise.resolve(content);
                     file = {
@@ -51,7 +51,7 @@ var helper = {
             var fileNameWithPath  = root + file.name;
             fs.readFile(fileNameWithPath, function(err, content){
                 if(err){
-                    fileContentPromise.reject();
+                    fileContentPromise.reject(err);
                 } else {
                     fileContentPromise.resolve(content);
                 }
@@ -62,7 +62,7 @@ var helper = {
             fileContentPromise.resolve(file.content);
         } else {
             //object and no name
-            fileContentPromise.reject();
+            fileContentPromise.reject('File metadata not provided');
         }
 
 
@@ -78,7 +78,7 @@ var helper = {
                 headers: constants.AUTH_HEADERS
             }).on('complete', function(data) {
                 if (data instanceof Error) {
-                    restlerPromise.reject();
+                    restlerPromise.reject(data);
                 } else {
                     restlerPromise.resolve(data);
                 }
