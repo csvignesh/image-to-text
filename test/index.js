@@ -23,7 +23,7 @@ function withContent(){
                 }
 
                 var filesize = data.size;
-                lib.getTextFromImage({
+                lib.getKeywordsForImage({
                     name: 'iphone.jpeg',
                     path: './',
                     content: content
@@ -43,8 +43,8 @@ function withContent(){
 
 //without content
 function WithoutContent(){
-    return lib.getTextFromImage({
-        name: 'iphone.jpeg',
+    return lib.getKeywordsForImage({
+        name: 'iphone.png',
         path: './'
     }).then(function(data){
         console.log('Passed Without content : ' + data);
@@ -55,7 +55,7 @@ function WithoutContent(){
 
 //without path and content
 function withPathAndContent() {
-    return lib.getTextFromImage({
+    return lib.getKeywordsForImage({
         name: 'iphone.jpeg'
     }).then(function(data) {
         console.log('Passed Without path and content : ' + data);
@@ -66,7 +66,7 @@ function withPathAndContent() {
 
 //with name alone as string
 function WithNameAloneAsString(){
-    return lib.getTextFromImage('iphone.jpeg').then(function(data){
+    return lib.getKeywordsForImage('iphone.jpeg').then(function(data){
         console.log('Passed with name alone as string : ' + data);
     }).fail(function(){
         return 'with name alone as string : failed';

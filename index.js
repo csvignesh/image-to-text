@@ -14,7 +14,7 @@ var constants = {
 };
 
 module.exports = {
-    getTextFromImage: function(file){
+    getKeywordsForImage: function(file){
         return helper.uploadPic(file).then(function(data){
             return helper.getKeywordsWithToken(data.token);
         });
