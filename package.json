@@ -1,6 +1,6 @@
 {
   "name": "image-to-text",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "decodes objects in a given image and gives back the keywords/text",
   "main": "index.js",
   "scripts": {
@@ -24,5 +24,16 @@
   "dependencies": {
     "q": "^1.4.1",
     "restler": "^3.3.0"
-  }
+  },
+  "keywords": [
+    "image",
+    "text",
+    "object",
+    "detection",
+    "recognition",
+    "object detection",
+    "image recognition",
+    "keyword",
+    "image to text"
+  ]
 }
