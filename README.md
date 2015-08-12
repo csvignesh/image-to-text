@@ -1,6 +1,6 @@
 # image-to-text
 
-* Simple object detection module.
+* Simple object detection module. Reads Text/Numbers/Characters/Bar codes too.
 
 * Finds the object in an given image file and gives back the text description of it. (Uses api over internet)
 
