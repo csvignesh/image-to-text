@@ -27,6 +27,15 @@
 
 ![iphone 6 image](http://goo.gl/TEQAbN)
 
+##### Barcode/Character identification:
+![vin](https://goo.gl/HqTciV)
+![just do it](https://goo.gl/K7KdTj)
+
+######Output:
+>bar code 0 36000 29145 2
+>
+>nike just do it logo
+
 #### File specifications
 
 * File can we object with name and path mentioned
