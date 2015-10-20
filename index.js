@@ -18,6 +18,9 @@ module.exports = {
         return helper.uploadPic(file).then(function(data){
             return helper.getKeywordsWithToken(data.token);
         });
+    },
+    setAuth: function(api_key){
+        constants.AUTH_HEADERS.Authorization = 'CloudSight ' + api_key;
     }
 };
 
