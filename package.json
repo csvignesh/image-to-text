@@ -1,6 +1,6 @@
 {
   "name": "image-to-text",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "decodes objects in a given image and gives back the keywords/text",
   "main": "index.js",
   "scripts": {
