@@ -7,7 +7,7 @@ var fs = require('fs');
 var constants = {
     IMAGE_UPLOAD_PATH: 'https://api.cloudsightapi.com/image_requests',
     AUTH_HEADERS: {
-        'Authorization': 'CloudSight amZd_zG32VK-AoSz05JLIA'
+        'Authorization': 'CloudSight ztEX9VMpdh3YbmiGfvlLDA'
     },
     LOCALE: 'en-US',
     POOLING_URL: 'https://api.cloudsightapi.com/image_responses/'

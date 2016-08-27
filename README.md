@@ -15,8 +15,12 @@
    path: './image/'
  };
 
+ var key = 'ztEX9VMpdh3YbmiGfvlLDA'; //Your key registered from cloudsightapi @ https://cloudsightapi.com
+ imageToTextDecoder.setAuth(key);
  imageToTextDecoder.getKeywordsForImage(file).then(function(keywords){
     console.log(keywords);
+ },function(error){
+    console.log(error);
  });
 ```
 
@@ -64,10 +68,9 @@ fs.readFile('./iphone.jpeg', function(err, content){
     }
 }
 ```
-          
+
 
 * String - just name of the file. Path will be treated as root.
 ```javascript
 var file = 'iphone.jpeg';
 ```
-
